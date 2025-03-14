@@ -1,0 +1,20 @@
+// prisma/schema.prisma
+datasource db {
+  provider = "postgresql"  // You can change this to sqlite for simpler setup
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Student {
+  id        String   @id @default(cuid())
+  studentId String   @unique
+  firstName String
+  lastName  String
+  year      Int
+  subject   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
